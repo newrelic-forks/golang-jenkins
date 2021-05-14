@@ -23,7 +23,6 @@ type Action struct {
 	Causes               []Cause               `json:"causes"`
 	Parameter            []Parameter           `json:"parameters"`
 	ParameterDefinitions []ParameterDefinition `json:"parameterDefinitions"`
-	Parameters           []Parameter           `json:"parameters"`
 }
 
 type Cause struct {
