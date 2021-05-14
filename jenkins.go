@@ -98,18 +98,7 @@ func (jenkins *Jenkins) sendRequest(req *http.Request) (*http.Response, error) {
 	if jenkins.auth != nil {
 		req.SetBasicAuth(jenkins.auth.Username, jenkins.auth.ApiToken)
 	}
-	res, err := jenkins.client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	if res.StatusCode != http.StatusOK {
-		return nil, &HTTPStatusError{
-			URL:    req.URL.String(),
-			Code:   res.StatusCode,
-			Status: res.Status,
-		}
-	}
-	return res, nil
+	return http.DefaultClient.Do(req)
 }
 
 func (jenkins *Jenkins) parseXmlResponse(resp *http.Response, body interface{}) (err error) {
